@@ -1,4 +1,5 @@
-using Unity.VisualScripting.Dependencies.NCalc;
+
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,6 +40,14 @@ public class Move : MonoBehaviour
         Vector2 input = value.Get<Vector2>();
         if (input != null)
         {
+            if (input.x > 0.0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f); // 오른쪽을 보도록 회전
+            }
+            else if (input.x < 0.0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f); // 왼쪽을 보도록 회전
+            }
             moveDirection = new Vector2(input.x, input.y);
         }
     }
